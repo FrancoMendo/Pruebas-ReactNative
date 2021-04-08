@@ -7,23 +7,23 @@ const CheckNetInfo = () => {
   const [networkInfo, setNetworkInfo] = useState("");
 
   useEffect(() => {
-    // NetInfo.fetch().then((state) => {
-    //   console.log("Connection type", state.type);
-    //   console.log("Is connected?", state.isConnected);
-    //   console.log("State:", state);
-    //   const newInfo =
-    //     " Connection type: " +
-    //     state.type +
-    //     "\n Is connected: " +
-    //     state.isConnected +
-    //     "\n intensidad: " +
-    //     state.strength +
-    //     "\n isWifiEnabled: " +
-    //     state.isWifiEnabled +
-    //     "\n isInternetReachable: " +
-    //     state.isInternetReachable;
-    //   setNetworkInfo(newInfo);
-    // });
+    NetInfo.fetch().then((state) => {
+      console.log("Connection type", state.type);
+      console.log("Is connected?", state.isConnected);
+      console.log("State:", state);
+      const newInfo =
+        " Connection type: " +
+        state.type +
+        "\n Is connected: " +
+        state.isConnected +
+        "\n intensidad: " +
+        state.strength +
+        "\n isWifiEnabled: " +
+        state.isWifiEnabled +
+        "\n isInternetReachable: " +
+        state.isInternetReachable;
+      setNetworkInfo(newInfo);
+    });
   }, []);
 
   const UpdateNetInfo = () => {
