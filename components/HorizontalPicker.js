@@ -13,7 +13,7 @@ var unDia = 1000 * 60 * 60 * 24;
 var dia = Math.ceil(dif / unDia);
 
 const renderItem = (item, index) => (
-  <View style={([styles.item], { width: 80 })}>
+  <View style={styles.item}>
     <Text style={styles.itemText}>{item}</Text>
   </View>
 );
@@ -46,8 +46,6 @@ export default function MyPicker() {
     if (index < 63) {
       const newPosition = index + 364;
       pickerHorizontal.current.scrollToPosition(newPosition);
-      //setDataArray(newArray);
-      //console.log("UseRef:");
     } else if (index > 1027) {
       const newPosition = index - 364;
       pickerHorizontal.current.scrollToPosition(newPosition);
@@ -58,48 +56,56 @@ export default function MyPicker() {
   //   console.log("REF:", pickerHorizontal.current);
   // }, [pickerHorizontal]);
   const changeposition = () => {
-    pickerHorizontal.current.scrollToPosition(10);
+    pickerHorizontal.current.scrollToPosition(1000);
   };
 
   return (
-    <View style={{ height: 145 }}>
+    <>
       <Button onPress={changeposition} title={"cambiar posicion"} />
-      <LinearGradient
-        pointerEvents="none"
-        style={styles.linearGradient}
-        colors={[LN_SIDE_COLOR, LN_CENTER_COLOR, LN_SIDE_COLOR]}
-        start={{ x: 0, y: 0 }}
-        end={{ x: 1, y: 0 }}
-      />
-      <HorizontalPicker
-        ref={pickerHorizontal}
-        defaultIndex={dia + 362}
-        data={dataArray}
-        renderItem={renderItem}
-        itemWidth={80}
-        onChange={(index) => {
-          checkIfLimit(index);
-        }}
-        onScrollEndDrag={console.log("End drag")}
-      />
-    </View>
+      <View style={{ height: 50 }}>
+        <LinearGradient
+          pointerEvents="none"
+          style={styles.linearGradient}
+          colors={[LN_SIDE_COLOR, LN_CENTER_COLOR, LN_SIDE_COLOR]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 0 }}
+        />
+        <View style={styles.recuadro}></View>
+        <HorizontalPicker
+          ref={pickerHorizontal}
+          defaultIndex={dia + 362}
+          data={dataArray}
+          renderItem={renderItem}
+          itemWidth={70}
+          onChange={(index) => {
+            checkIfLimit(index);
+          }}
+          onScrollEndDrag={console.log("End drag")}
+        />
+      </View>
+    </>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: "#0B5FA5",
-    alignItems: "center",
-    justifyContent: "center",
+    //flex: 1,
+    display: "flex",
+    //backgroundColor: "#0B5FA5",
+    //alignItems: "center",
+    //justifyContent: "center",
+    flexDirection: "column",
   },
   item: {
     flex: 1,
     justifyContent: "center",
-    width: 80,
+    width: 70,
+    // alignItems: "center",
+    // borderWidth: 10,
+    // borderColor: "#000",
   },
   itemText: {
-    fontSize: 30,
+    fontSize: 25,
     color: "#000",
     textAlign: "center",
   },
@@ -111,5 +117,20 @@ const styles = StyleSheet.create({
     bottom: 0,
     width: "100%",
     height: "auto",
+  },
+  recuadro: {
+    position: "absolute",
+    left: 0,
+    right: 0,
+    top: 0,
+    bottom: 0,
+    borderColor: "#000",
+    borderWidth: 3,
+    borderRadius: 15,
+    height: 50,
+    // zIndex: 5,
+    // marginTop: "20%",
+    marginLeft: "41%",
+    marginRight: "41%",
   },
 });

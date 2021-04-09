@@ -17,7 +17,7 @@ const CheckNetInfo = () => {
         "\n Is connected: " +
         state.isConnected +
         "\n intensidad: " +
-        state.strength +
+        state.details.strength +
         "\n isWifiEnabled: " +
         state.isWifiEnabled +
         "\n isInternetReachable: " +
