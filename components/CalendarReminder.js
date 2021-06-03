@@ -59,9 +59,10 @@ function CalendarReminder() {
   async function createEventCalendar() {
     const eventDetails = {
       title: "Test Save Event 2",
+      location: "www.google.com",
       startDate: new Date("2021-06-04T20:00").toISOString(),
       endDate: new Date("2021-06-04T21:00").toISOString(),
-      notes: "TestLink",
+      notes: "Detail of event",
       alarms: [{ relativeOffset: 60 }],
     };
     const eventIdCalendar = await Calendar.createEventAsync(
@@ -69,7 +70,7 @@ function CalendarReminder() {
       eventDetails
     );
     console.log("Event detail:", eventDetails, "ID:", eventIdCalendar);
-    Calendar.openEventInCalendar("7D613086-A438-4592-B08C-A478325515C3");
+    Calendar.openEventInCalendar("7D613086-A438-4592-B08C-A478325515C3"); //Only Android
   }
 
   async function getDefaultCalendarSource() {
