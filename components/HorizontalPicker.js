@@ -12,20 +12,30 @@ var dif = ahora - comienzo;
 var unDia = 1000 * 60 * 60 * 24;
 var dia = Math.ceil(dif / unDia);
 
-const renderItem = (item, index) => (
-  <View style={styles.item}>
-    <Text style={styles.itemText}>{item}</Text>
-  </View>
-);
-
-const LN_SIDE_COLOR = "#98bf55";
+const LN_SIDE_COLOR = "#dedede";
 const LN_CENTER_COLOR = "#fff";
 export default function MyPicker() {
   const [dataArray, setDataArray] = useState([...Items, ...Items, ...Items]);
 
-  const [limit, setLimit] = useState(2);
+  const [currentIndex, setCurrentIndex] = useState(dia);
 
   const pickerHorizontal = useRef(null);
+
+  const renderItem = (item, index) => (
+    <View style={styles.item}>
+      <Text
+        style={[
+          styles.itemText,
+          {
+            color: currentIndex == index ? "#000" : "#9c9c9c",
+            fontWeight: currentIndex == index ? "bold" : "normal",
+          },
+        ]}
+      >
+        {item}
+      </Text>
+    </View>
+  );
 
   const checkIfLimit = (index) => {
     console.log(
@@ -59,9 +69,17 @@ export default function MyPicker() {
     pickerHorizontal.current.scrollToPosition(1000);
   };
 
+  const nextPosition = () => {
+    console.log("====================================");
+    console.log("Pick next");
+    console.log("====================================");
+    pickerHorizontal.current.scrollToPosition(currentIndex + 20);
+  };
+
   return (
     <>
       <Button onPress={changeposition} title={"cambiar posicion"} />
+      <Button onPress={nextPosition} title={">"} />
       <View style={{ height: 50 }}>
         <LinearGradient
           pointerEvents="none"
@@ -79,6 +97,7 @@ export default function MyPicker() {
           itemWidth={70}
           onChange={(index) => {
             checkIfLimit(index);
+            setCurrentIndex(index);
           }}
           onScrollEndDrag={console.log("End drag")}
         />
@@ -120,17 +139,17 @@ const styles = StyleSheet.create({
   },
   recuadro: {
     position: "absolute",
-    left: 0,
-    right: 0,
+    left: "41%",
+    right: "41%",
     top: 0,
     bottom: 0,
-    borderColor: "#000",
+    borderColor: "#98bf55",
     borderWidth: 3,
     borderRadius: 15,
     height: 50,
     // zIndex: 5,
     // marginTop: "20%",
-    marginLeft: "41%",
-    marginRight: "41%",
+    //marginLeft: "41%",
+    //marginRight: "41%",
   },
 });

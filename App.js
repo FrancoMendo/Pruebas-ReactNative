@@ -20,6 +20,7 @@ import MyPicker from "./components/HorizontalPicker";
 import LoopPicker from "./components/LoopPicker";
 import HorizontalPicker from "@vseslav/react-native-horizontal-picker";
 import CheckNetInfo from "./components/CheckNetInfo";
+import CalendarReminder from "./components/CalendarReminder";
 //import CircularPickerLib from "./components/CircularPickerLib";
 //import NumberPicker from "./components/NumberPicker";
 
@@ -44,9 +45,9 @@ export default function App() {
   // Functions
   const checkNetInfo = () => {
     NetInfo.fetch().then((state) => {
-      console.log("Connection type", state.type);
-      console.log("Is connected?", state.isConnected);
-      console.log("State:", state);
+      // console.log("Connection type", state.type);
+      // console.log("Is connected?", state.isConnected);
+      // console.log("State:", state);
     });
   };
 
@@ -63,16 +64,16 @@ export default function App() {
     });
   };
   const log = () => {
-    console.log("DATAa:", exampleState);
+    //  console.log("DATAa:", exampleState);
   };
 
   function scrollToNext() {
-    console.log("Scroll next");
+    //console.log("Scroll next");
     scroller.scrollTo({ x: 1 });
   }
 
   const scrollToFirst = () => {
-    console.log("Scroll first");
+    // console.log("Scroll first");
     scroller.scrollTo({ x: 1 });
   };
 
@@ -85,7 +86,7 @@ export default function App() {
   return (
     <>
       <View
-        style={{ flex: 0.5, backgroundColor: "rebeccapurple", paddingTop: 50 }}
+        style={{ flex: 0.2, backgroundColor: "rebeccapurple", paddingTop: 50 }}
       >
         <View
           style={{
@@ -127,8 +128,11 @@ export default function App() {
           </View>
         </ScrollView>
       </View>
+      <View>
+        <CalendarReminder />
+      </View>
       {/* <MyPicker /> */}
-      <MyPicker />
+      {/* <MyPicker /> */}
     </>
   );
 }
